@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrackIcon — We Deliver Results, Not Just Tools</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Space Grotesk', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            bg: '#0E0F11',
+            bgAlt: '#15171B',
+            accent: '#FF006E',
+            textPrimary: '#F5F5F5',
+            textSecondary: '#A1A1A6',
+            textWeak: '#52525B',
+            border: '#23252B',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    ::selection { background: #FF006E; color: #fff; }
+    body { background: #0E0F11; color: #F5F5F5; font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; }
+    .grid-bg {
+      background-size: 40px 40px;
+      background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+      mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+    }
+    .hero-gradient { background: linear-gradient(to top, #0E0F11, transparent, transparent); }
+    .glow { box-shadow: 0 0 60px rgba(255,0,110,0.15); }
+    .glow-sm { box-shadow: 0 0 30px rgba(255,0,110,0.1); }
+    .card-hover { transition: all 0.5s ease; }
+    .card-hover:hover { background: rgba(255,255,255,0.03); }
+    .card-hover:hover .card-img { transform: scale(1.05); filter: grayscale(0); }
+    .card-img { transition: all 700ms ease-out; filter: grayscale(100%); }
+    .btn-primary { transition: all 0.3s ease; }
+    .btn-primary:hover { background: #E60063; box-shadow: 0 0 30px rgba(255,0,110,0.4); }
+    .btn-outline { transition: all 0.3s ease; }
+    .btn-outline:hover { background: #FF006E; color: #fff; border-color: #FF006E; }
+    .tag { background: rgba(255,0,110,0.1); color: #FF006E; border: 1px solid rgba(255,0,110,0.3); }
+    .popular-badge { background: linear-gradient(135deg, #FF006E, #FF4D8F); }
+    .logo-nav { width: 32px; height: 32px; object-fit: contain; }
+    .logo-hero { width: 100px; height: 100px; object-fit: contain; }
+    @media(min-width:768px) { .logo-hero { width: 130px; height: 130px; } }
+    @media(min-width:1024px) { .logo-hero { width: 150px; height: 150px; } }
+    .logo-footer { width: 32px; height: 32px; object-fit: contain; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .float { animation: float 4s ease-in-out infinite; }
+    @keyframes pulse-glow { 0%,100%{opacity:0.4} 50%{opacity:0.8} }
+    .pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+    @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    .marquee-track { display: flex; animation: marquee 25s linear infinite; }
+    .nav-link { transition: color 0.15s ease; }
+    .nav-link:hover { color: #F5F5F5; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; }
+    .faq-answer.open { max-height: 500px; }
+    .toast { transform: translateY(100px); opacity: 0; transition: all 0.4s ease; }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+    .mobile-menu.open { transform: translateX(0); }
+    .form-input { transition: border-color 0.3s ease; }
+    .form-input:focus { border-color: #FF006E; outline: none; }
+    select option { background: #15171B; color: #A1A1A6; }
+    .chatbot-window {
+      width: 380px; max-width: calc(100vw - 32px); height: 520px; max-height: calc(100vh - 120px);
+      transform: scale(0.8) translateY(20px); opacity: 0; pointer-events: none;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.25s ease;
+    }
+    .chatbot-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+    .chat-messages { scrollbar-width: thin; scrollbar-color: #23252B transparent; }
+    .chat-messages::-webkit-scrollbar { width: 4px; }
+    .chat-messages::-webkit-scrollbar-track { background: transparent; }
+    .chat-messages::-webkit-scrollbar-thumb { background: #23252B; border-radius: 4px; }
+    @keyframes msgIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+    .msg-anim { animation: msgIn 0.3s ease forwards; }
+    @keyframes typing { 0%,60%,100%{opacity:0.3} 30%{opacity:1} }
+    .typing-dot { animation: typing 1.4s infinite; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes chatPulse { 0%,100%{box-shadow:0 0 0 0 rgba(255,0,110,0.4)} 50%{box-shadow:0 0 0 12px rgba(255,0,110,0)} }
+    .chat-pulse { animation: chatPulse 2s ease-in-out infinite; }
+    .chat-pulse.stop { animation: none; }
+    .craft-badge { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: 0.05em; }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+  <!-- TOAST -->
+  <div id="toast" class="toast fixed bottom-6 right-6 z-[9999] bg-bgAlt border border-border rounded-lg px-6 py-4 flex items-center gap-3 shadow-2xl max-w-sm">
+    <span class="iconify toast-icon text-green-500 text-xl" data-icon="lucide:check-circle" id="toastIcon"></span>
+    <span id="toastMsg" class="text-sm text-textPrimary">Message sent!</span>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="fixed top-0 left-0 right-0 z-50 pt-6 px-4">
+    <div class="max-w-[1600px] mx-auto">
+      <div class="bg-bgAlt/80 backdrop-blur-md rounded-full shadow-2xl shadow-black/50 border border-border flex items-center justify-between pt-3 pb-3 pl-5 pr-3" id="navBar">
+        <a href="#home" class="flex items-center gap-2">
+          <img src="https://z-cdn-media.chatglm.cn/files/32d583c3-32e6-4079-8d55-71b756d07e83.jpeg?auth_key=1877641765-32a8a13aaa0342d0baaf747036cd2c7b-0-672ba68dc212461f3502ad83ff0506b3" alt="TrackIcon" class="logo-nav rounded-full">
+          <span class="font-heading font-bold text-lg text-textPrimary">TrackIcon</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#home" class="nav-link text-sm font-medium text-textSecondary">Home</a>
+          <a href="#about" class="nav-link text-sm font-medium text-textSecondary">About Us</a>
+          <a href="#services" class="nav-link text-sm font-medium text-textSecondary">Services</a>
+          <a href="#pricing" class="nav-link text-sm font-medium text-textSecondary">Pricing</a>
+          <a href="#contact" class="nav-link text-sm font-medium text-textSecondary">Contact</a>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="#contact" class="hidden sm:inline-flex btn-primary bg-accent text-white text-xs font-bold uppercase tracking-widest px-6 py-2.5 rounded-full">Get Started</a>
+          <button id="menuToggle" class="md:hidden w-10 h-10 rounded-full border border-border flex items-center justify-center text-textSecondary hover:text-textPrimary transition-colors">
+            <span class="iconify text-lg" data-icon="lucide:menu"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="mobile-menu fixed inset-0 z-[60] bg-bg/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8">
+    <button id="menuClose" class="absolute top-10 right-8 w-10 h-10 rounded-full border border-border flex items-center justify-center text-textSecondary hover:text-textPrimary transition-colors">
+      <span class="iconify text-xl" data-icon="lucide:x"></span>
+    </button>
+    <img src="https://z-cdn-media.chatglm.cn/files/32d583c3-32e6-4079-8d55-71b756d07e83.jpeg?auth_key=1877641765-32a8a13aaa0342d0baaf747036cd2c7b-0-672ba68dc212461f3502ad83ff0506b3" alt="TrackIcon" class="w-16 h-16 object-contain rounded-full mb-2">
+    <a href="#home" class="mobile-link text-2xl font-heading font-bold text-textPrimary">Home</a>
+    <a href="#about" class="mobile-link text-2xl font-heading font-bold text-textPrimary">About Us</a>
+    <a href="#services" class="mobile-link text-2xl font-heading font-bold text-textPrimary">Services</a>
+    <a href="#pricing" class="mobile-link text-2xl font-heading font-bold text-textPrimary">Pricing</a>
+    <a href="#contact" class="mobile-link text-2xl font-heading font-bold text-textPrimary">Contact</a>
+    <a href="#contact" class="btn-primary bg-accent text-white text-sm font-bold uppercase tracking-widest px-8 py-3 rounded-full mt-4">Get Started</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 grid-bg"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent/5 blur-[120px] pulse-glow"></div>
+    <div class="relative z-10 max-w-[1600px] mx-auto px-6 text-center pt-24">
+      <div class="mb-10">
+        <img src="https://z-cdn-media.chatglm.cn/files/32d583c3-32e6-4079-8d55-71b756d07e83.jpeg?auth_key=1877641765-32a8a13aaa0342d0baaf747036cd2c7b-0-672ba68dc212461f3502ad83ff0506b3" alt="TrackIcon" class="logo-hero mx-auto rounded-full">
+      </div>
+      <div class="inline-flex items-center gap-2 tag rounded-full px-4 py-1.5 mb-8">
+        <span class="iconify text-sm" data-icon="lucide:zap"></span>
+        <span class="text-xs font-medium uppercase tracking-widest">Done-For-You Digital Solutions</span>
+      </div>
+      <h1 class="font-heading font-bold text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[0.9] tracking-tight mb-6">
+        <span class="block">We Don't Sell</span>
+        <span class="block text-accent">Tools —</span>
+        <span class="block">We Deliver</span>
+        <span class="block">Results</span>
+      </h1>
+      <p class="text-textSecondary text-base md:text-lg font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+        Websites, Apps & AI Automation built to generate leads, convert customers, and grow your business — all done-for-you with personal 1-on-1 support.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <a href="#pricing" class="btn-primary bg-accent text-white text-sm font-bold uppercase tracking-widest px-10 py-4 rounded-full flex items-center gap-2">
+          View Packages
+          <span class="iconify" data-icon="lucide:arrow-right"></span>
+        </a>
+        <a href="#contact" class="btn-outline border border-border text-textPrimary text-sm font-bold uppercase tracking-widest px-10 py-4 rounded-full flex items-center gap-2">
+          Free Consultation
+        </a>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+        <div class="text-center"><div class="font-heading font-bold text-2xl md:text-3xl text-textPrimary">50+</div><div class="text-textSecondary text-xs uppercase tracking-widest mt-1">Projects Delivered</div></div>
+        <div class="text-center"><div class="font-heading font-bold text-2xl md:text-3xl text-textPrimary">24/7</div><div class="text-textSecondary text-xs uppercase tracking-widest mt-1">AI Support</div></div>
+        <div class="text-center"><div class="font-heading font-bold text-2xl md:text-3xl text-textPrimary">1:1</div><div class="text-textSecondary text-xs uppercase tracking-widest mt-1">Personal Help</div></div>
+        <div class="text-center"><div class="font-heading font-bold text-2xl md:text-3xl text-accent">100%</div><div class="text-textSecondary text-xs uppercase tracking-widest mt-1">Result Focused</div></div>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-32 hero-gradient"></div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      <span class="text-textWeak text-[10px] uppercase tracking-widest">Scroll</span>
+      <div class="w-px h-8 bg-gradient-to-b from-textWeak to-transparent"></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="border-y border-border py-4 overflow-hidden">
+    <div class="marquee-track whitespace-nowrap">
+      <span class="inline-flex items-center gap-8 px-4 text-textWeak text-sm uppercase tracking-widest font-medium">
+        <span>Website Design</span><span class="text-accent">◆</span><span>App Development</span><span class="text-accent">◆</span><span>AI Automation</span><span class="text-accent">◆</span><span>E-Commerce</span><span class="text-accent">◆</span><span>Lead Generation</span><span class="text-accent">◆</span><span>WhatsApp Bots</span><span class="text-accent">◆</span><span>SEO Optimization</span><span class="text-accent">◆</span><span>JEE Counselling</span><span class="text-accent">◆</span><span>Chatbot Integration</span><span class="text-accent">◆</span><span>Payment Gateway</span><span class="text-accent">◆</span>
+      </span>
+      <span class="inline-flex items-center gap-8 px-4 text-textWeak text-sm uppercase tracking-widest font-medium">
+        <span>Website Design</span><span class="text-accent">◆</span><span>App Development</span><span class="text-accent">◆</span><span>AI Automation</span><span class="text-accent">◆</span><span>E-Commerce</span><span class="text-accent">◆</span><span>Lead Generation</span><span class="text-accent">◆</span><span>WhatsApp Bots</span><span class="text-accent">◆</span><span>SEO Optimization</span><span class="text-accent">◆</span><span>JEE Counselling</span><span class="text-accent">◆</span><span>Chatbot Integration</span><span class="text-accent">◆</span><span>Payment Gateway</span><span class="text-accent">◆</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- WHY DIFFERENT -->
+  <section id="about" class="py-24 md:py-32 relative">
+    <div class="max-w-[1550px] mx-auto px-6">
+      <div class="max-w-3xl mb-16">
+        <div class="inline-flex items-center gap-2 tag rounded-full px-4 py-1.5 mb-6"><span class="iconify text-sm" data-icon="lucide:sparkles"></span><span class="text-xs font-medium uppercase tracking-widest">Why We Are Different</span></div>
+        <h2 class="font-heading font-bold text-3xl md:text-5xl tracking-tight mb-6">Strategy + Execution<br><span class="text-accent">+ AI Integration</span></h2>
+        <p class="text-textSecondary text-base md:text-lg font-light leading-relaxed">We don't just build websites or apps — we build lead-generating systems for your business.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="card-hover border border-border rounded-2xl p-8 group"><div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors"><span class="iconify text-accent text-2xl" data-icon="lucide:layout-dashboard"></span></div><h3 class="font-heading font-bold text-xl mb-3">Done-For-You Setup</h3><p class="text-textSecondary text-sm font-light leading-relaxed">Complete website, app & AI setup — no code needed from your end.</p></div>
+        <div class="card-hover border border-border rounded-2xl p-8 group"><div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors"><span class="iconify text-accent text-2xl" data-icon="lucide:user-check"></span></div><h3 class="font-heading font-bold text-xl mb-3">Personal 1-on-1 Support</h3><p class="text-textSecondary text-sm font-light leading-relaxed">No tickets, no bots for support. Direct help from real humans.</p></div>
+        <div class="card-hover border border-border rounded-2xl p-8 group"><div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors"><span class="iconify text-accent text-2xl" data-icon="lucide:brain-circuit"></span></div><h3 class="font-heading font-bold text-xl mb-3">AI Integration</h3><p class="text-textSecondary text-sm font-light leading-relaxed">Automate with AI chatbots, smart lead capture, WhatsApp automation.</p></div>
+        <div class="card-hover border border-border rounded-2xl p-8 group"><div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors"><span class="iconify text-accent text-2xl" data-icon="lucide:target"></span></div><h3 class="font-heading font-bold text-xl mb-3">Leads & Conversions</h3><p class="text-textSecondary text-sm font-light leading-relaxed">Every system optimized for real growth — not just looking pretty.</p></div>
+        <div class="card-hover border border-border rounded-2xl p-8 group"><div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors"><span class="iconify text-accent text-2xl" data-icon="lucide:rocket"></span></div><h3 class="font-heading font-bold text-xl mb-3">Plan + Build + Optimize</h3><p class="text-textSecondary text-sm font-light leading-relaxed">We plan strategically, build meticulously, and optimize continuously.</p></div>
+        <div class="card-hover border border-border rounded-2xl p-8 group"><div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors"><span class="iconify text-accent text-2xl" data-icon="lucide:shield-check"></span></div><h3 class="font-heading font-bold text-xl mb-3">Our Promise</h3><p class="text-textSecondary text-sm font-light leading-relaxed">"We don't just build websites or apps, we build lead-generating systems."</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-24 md:py-32 relative">
+    <div class="max-w-[1550px] mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <div class="inline-flex items-center gap-2 tag rounded-full px-4 py-1.5 mb-6"><span class="iconify text-sm" data-icon="lucide:globe"></span><span class="text-xs font-medium uppercase tracking-widest">Our Services</span></div>
+        <h2 class="font-heading font-bold text-3xl md:text-5xl tracking-tight mb-6">Everything You Need<br><span class="text-accent">Under One Roof</span></h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="card-hover border border-border rounded-2xl overflow-hidden group"><div class="aspect-[16/9] overflow-hidden relative"><img src="https://picsum.photos/seed/trackicon-website/800/450.jpg" alt="Website" class="card-img w-full h-full object-cover opacity-60"><div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/50 to-transparent"></div><div class="absolute bottom-6 left-6 right-6"><div class="tag rounded-full px-3 py-1 text-[10px] font-medium uppercase tracking-widest inline-block mb-3">Website</div><h3 class="font-heading font-bold text-2xl md:text-3xl">Business Growth<br>Website</h3></div></div><div class="p-6"><p class="text-textSecondary text-sm font-light leading-relaxed mb-4">Custom-designed, mobile-friendly websites with AI chatbot, smart lead capture, WhatsApp integration.</p><div class="flex flex-wrap gap-2"><span class="text-[10px] uppercase tracking-widest text-textWeak border border-border rounded-full px-3 py-1">5-7 Pages</span><span class="text-[10px] uppercase tracking-widest text-textWeak border border-border rounded-full px-3 py-1">AI Chatbot</span><span class="text-[10px] uppercase tracking-widest text-textWeak border border-border rounded-full px-3 py-1">WhatsApp</span><span class="text-[10px] uppercase tracking-widest text-textWeak border border-border rounded-full px-3 py-1">SEO</span></div></div></div>
+        <div class="card-hover border border-border rounded-2xl overflow-hidden group"><div class="aspect-[16/9] overflow-hidden relative"><img src="https://picsum.photos/seed/trackicon-ecommerce/800/450.jpg" alt="E-Commerce" class="card-img w-full h-full object-cover opacity-60"><div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/50 to-transparent"></div><div class="absolute bottom-6 left-6 right-6"><div class="tag rounded-full px-3 py-1 text-[10px] font-medium uppercase tracking-widest inline-block mb-3">E-Commerce</div><h3 class="font-heading font-bold text-2xl md:text-3xl">Online Store<br>Launch</h3></div></div><div class="p-6"><p class="text-textSecondary text-sm font-light leading-relaxed mb-4">Complete e-commerce with product listings, payment gateways, order management, AI support.</p><div class="flex flex-wrap gap-2"><span class="text-[10px] uppercase tracking-widest text-textWeak border border-border rounded-full px-3 py-1">20-50 Products</span><span class="text-[10px] uppercase tracking-widest text-textWeak border border-border rounded-full px-3 py-1">Payments</span><span class="text-[10px] uppercase tracking-widest text-textWeak border border-border rounded-full px-3 py-1">Orders</span><span class="text-[10px] uppercase tracking-widest text-textWeak border border-border rounded-full px-3 py-1">AI Assistant</span></div></div></div>
+        <div class="card-hover border border-border rounded-2xl overflow-hidden group"><div class="aspect-[16/9] overflow-hidden relative"><img src="https://picsum.photos/seed/trackicon-app/800/450.jpg" alt="App" class="card-img w-full h-full object-cover opacity-60"><div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/50 to-transparent"></div><div class="absolute bottom-6 left-6 right-6"><div class="tag rounded-full px-3 py-1 text-[10px] font-medium uppercase tracking-widest inline-block mb-3">Android App</div><h3 class="font-heading font-bold text-2xl md:text-3xl">Custom Android<br>Applications</h3></div></div><div class="p-6"><p class="text-textSecondary text-sm font-light leading-relaxed mb-4">Play Store-ready Android apps with AI chat, lead capture, push notifications, payments.</p><div class="flex flex-wrap gap-2"><span class="text-[10px] uppercase tracking-widest text-textWeak border border-border rounded-full px-3 py-1">Play Store</span><span class="text-[10px] uppercase tracking-widest text-textWeak border border-border rounded-full px-3 py-1">Push</span><span class="text-[10px] uppercase tracking-widest text-textWeak border border-border rounded-full px-3 py-1">AI Chat</span><span class="text-[10px] uppercase tracking-widest text-textWeak border border-border rounded-full px-3 py-1">Payments</span></div></div></div>
+        <div class="card-hover border border-border rounded-2xl overflow-hidden group"><div class="aspect-[16/9] overflow-hidden relative"><img src="https://picsum.photos/seed/trackicon-jee/800/450.jpg" alt="JEE" class="card-img w-full h-full object-cover opacity-60"><div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/50 to-transparent"></div><div class="absolute bottom-6 left-6 right-6"><div class="tag rounded-full px-3 py-1 text-[10px] font-medium uppercase tracking-widest inline-block mb-3">Education</div><h3 class="font-heading font-bold text-2xl md:text-3xl">JEE SureSeat<br>Counselling</h3></div></div><div class="p-6"><p class="text-textSecondary text-sm font-light leading-relaxed mb-4">Personalized college prediction, JoSAA/CSAB form filling, smart strategy, 1:1 sessions.</p><div class="flex flex-wrap gap-2"><span class="text-[10px] uppercase tracking-widest text-textWeak border border-border rounded-full px-3 py-1">JoSAA/CSAB</span><span class="text-[10px] uppercase tracking-widest text-textWeak border border-border rounded-full px-3 py-1">1:1 Session</span><span class="text-[10px] uppercase tracking-widest text-textWeak border border-border rounded-full px-3 py-1">All India</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI SHOWCASE -->
+  <section class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.02] to-transparent"></div>
+    <div class="max-w-[1550px] mx-auto px-6 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div class="relative">
+          <div class="aspect-square rounded-3xl border border-border overflow-hidden relative glow">
+            <img src="https://picsum.photos/seed/trackicon-ai/700/700.jpg" alt="AI" class="w-full h-full object-cover opacity-40">
+            <div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-transparent"></div>
+            <div class="absolute top-8 left-8 bg-bgAlt/90 backdrop-blur border border-border rounded-xl p-4 float"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center"><span class="iconify text-green-500 text-xl" data-icon="lucide:bot"></span></div><div><div class="text-xs font-bold">AI Chatbot</div><div class="text-[10px] text-textWeak">24/7 Active</div></div></div></div>
+            <div class="absolute bottom-24 right-8 bg-bgAlt/90 backdrop-blur border border-border rounded-xl p-4 float" style="animation-delay:1s"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center"><span class="iconify text-accent text-xl" data-icon="lucide:message-circle"></span></div><div><div class="text-xs font-bold">WhatsApp AI</div><div class="text-[10px] text-textWeak">Auto Reply</div></div></div></div>
+            <div class="absolute bottom-8 left-8 bg-bgAlt/90 backdrop-blur border border-border rounded-xl p-4 float" style="animation-delay:2s"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center"><span class="iconify text-blue-500 text-xl" data-icon="lucide:database"></span></div><div><div class="text-xs font-bold">Smart Leads</div><div class="text-[10px] text-textWeak">Auto Captured</div></div></div></div>
+          </div>
+        </div>
+        <div>
+          <div class="inline-flex items-center gap-2 tag rounded-full px-4 py-1.5 mb-6"><span class="iconify text-sm" data-icon="lucide:cpu"></span><span class="text-xs font-medium uppercase tracking-widest">AI-Powered</span></div>
+          <h2 class="font-heading font-bold text-3xl md:text-5xl tracking-tight mb-6">AI Automation<br><span class="text-accent">Built Into Everything</span></h2>
+          <p class="text-textSecondary text-base md:text-lg font-light leading-relaxed mb-10">Every package includes AI features that work around the clock.</p>
+          <div class="space-y-4">
+            <div class="flex items-start gap-4 border border-border rounded-xl p-4"><div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5"><span class="iconify text-accent text-sm" data-icon="lucide:bot"></span></div><div><div class="font-heading font-bold text-sm mb-1">AI Sales Chatbot (24/7)</div><div class="text-textSecondary text-xs font-light leading-relaxed">Answers queries, qualifies leads, captures data automatically.</div></div></div>
+            <div class="flex items-start gap-4 border border-border rounded-xl p-4"><div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5"><span class="iconify text-accent text-sm" data-icon="lucide:message-circle"></span></div><div><div class="font-heading font-bold text-sm mb-1">AI WhatsApp Automation</div><div class="text-textSecondary text-xs font-light leading-relaxed">Automated replies, follow-ups, and notifications.</div></div></div>
+            <div class="flex items-start gap-4 border border-border rounded-xl p-4"><div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5"><span class="iconify text-accent text-sm" data-icon="lucide:bell-ring"></span></div><div><div class="font-heading font-bold text-sm mb-1">Instant Notifications</div><div class="text-textSecondary text-xs font-light leading-relaxed">Real-time alerts on WhatsApp & Email for every lead.</div></div></div>
+            <div class="flex items-start gap-4 border border-border rounded-xl p-4"><div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5"><span class="iconify text-accent text-sm" data-icon="lucide:database"></span></div><div><div class="font-heading font-bold text-sm mb-1">Automated Data Management</div><div class="text-textSecondary text-xs font-light leading-relaxed">All leads automatically organized — no manual entry.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="py-24 md:py-32 relative">
+    <div class="max-w-[1550px] mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <div class="inline-flex items-center gap-2 tag rounded-full px-4 py-1.5 mb-6"><span class="iconify text-sm" data-icon="lucide:tag"></span><span class="text-xs font-medium uppercase tracking-widest">Pricing</span></div>
+        <h2 class="font-heading font-bold text-3xl md:text-5xl tracking-tight mb-6">Transparent Pricing,<br><span class="text-accent">Real Value</span></h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div class="relative border border-border rounded-2xl p-8 flex flex-col card-hover glow-sm"><div class="absolute -top-3 left-1/2 -translate-x-1/2 popular-badge text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full">Most Popular ⭐</div><div class="mb-6 mt-2"><div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4"><span class="iconify text-blue-500 text-xl" data-icon="lucide:globe"></span></div><h3 class="font-heading font-bold text-xl mb-1">Business Growth</h3><p class="text-textSecondary text-xs font-light">Website with AI</p></div><div class="mb-6"><span class="text-textWeak text-sm">₹9,999 — </span><span class="font-heading font-bold text-3xl">₹14,999</span></div><div class="space-y-3 mb-8 flex-1"><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-accent text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>Custom Website (5-7 Pages)</div><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-accent text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>Mobile-Friendly & Fast</div><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-accent text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>WhatsApp & Contact Form</div><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-accent text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>Basic SEO</div><div class="border-t border-border pt-3 mt-3"><div class="text-[10px] uppercase tracking-widest text-accent font-medium mb-2">🤖 AI Included</div></div><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-accent text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>24/7 Chatbot + Lead Capture + WhatsApp AI</div></div><a href="#contact" class="btn-primary bg-accent text-white text-xs font-bold uppercase tracking-widest px-6 py-3 rounded-full text-center block">Get Started</a></div>
+        <div class="border border-border rounded-2xl p-8 flex flex-col card-hover"><div class="mb-6"><div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center mb-4"><span class="iconify text-purple-500 text-xl" data-icon="lucide:shopping-bag"></span></div><h3 class="font-heading font-bold text-xl mb-1">E-Commerce</h3><p class="text-textSecondary text-xs font-light">Online store</p></div><div class="mb-6"><span class="text-textWeak text-sm">₹14,999 — </span><span class="font-heading font-bold text-3xl">₹21,999</span></div><div class="space-y-3 mb-8 flex-1"><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-purple-500 text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>Shop Design + 20-50 Products</div><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-purple-500 text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>Payment Gateway (UPI/Cards)</div><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-purple-500 text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>Order Management + WhatsApp</div><div class="border-t border-border pt-3 mt-3"><div class="text-[10px] uppercase tracking-widest text-purple-500 font-medium mb-2">🤖 Advanced AI</div></div><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-purple-500 text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>AI Assistant + WhatsApp AI + Smart Leads</div></div><a href="#contact" class="btn-outline border border-border text-textPrimary text-xs font-bold uppercase tracking-widest px-6 py-3 rounded-full text-center block">Get Started</a></div>
+        <div class="border border-border rounded-2xl p-8 flex flex-col card-hover"><div class="mb-6"><div class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center mb-4"><span class="iconify text-green-500 text-xl" data-icon="lucide:smartphone"></span></div><h3 class="font-heading font-bold text-xl mb-1">Starter App</h3><p class="text-textSecondary text-xs font-light">Android basics</p></div><div class="mb-6"><span class="text-textWeak text-sm">₹19,999 — </span><span class="font-heading font-bold text-3xl">₹39,999</span></div><div class="space-y-3 mb-8 flex-1"><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-green-500 text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>Play Store Ready App</div><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-green-500 text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>WhatsApp & Call Buttons</div><div class="border-t border-border pt-3 mt-3"><div class="text-[10px] uppercase tracking-widest text-green-500 font-medium mb-2">🤖 AI Automation</div></div><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-green-500 text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>In-App AI Chat + Lead Capture + Notifications</div></div><a href="#contact" class="btn-outline border border-border text-textPrimary text-xs font-bold uppercase tracking-widest px-6 py-3 rounded-full text-center block">Get Started</a></div>
+        <div class="border border-border rounded-2xl p-8 flex flex-col card-hover"><div class="mb-6"><div class="w-10 h-10 rounded-xl bg-yellow-500/10 flex items-center justify-center mb-4"><span class="iconify text-yellow-500 text-xl" data-icon="lucide:trending-up"></span></div><h3 class="font-heading font-bold text-xl mb-1">Growth App</h3><p class="text-textSecondary text-xs font-light">Advanced app</p></div><div class="mb-6"><span class="text-textWeak text-sm">₹49,000 — </span><span class="font-heading font-bold text-3xl">₹89,000</span></div><div class="space-y-3 mb-8 flex-1"><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-yellow-500 text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>Login/Signup + Payments + Push + Admin</div><div class="border-t border-border pt-3 mt-3"><div class="text-[10px] uppercase tracking-widest text-yellow-500 font-medium mb-2">🤖 Advanced AI</div></div><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-yellow-500 text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>AI Engine + Lead Qual + Auto Follow-Up + Alerts</div></div><a href="#contact" class="btn-outline border border-border text-textPrimary text-xs font-bold uppercase tracking-widest px-6 py-3 rounded-full text-center block">Get Started</a></div>
+      </div>
+      <div class="mt-12 border border-border rounded-2xl overflow-hidden"><div class="grid grid-cols-1 lg:grid-cols-[1fr_auto]"><div class="p-8 md:p-12"><div class="flex items-center gap-3 mb-6"><div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center"><span class="iconify text-accent text-2xl" data-icon="lucide:graduation-cap"></span></div><div><h3 class="font-heading font-bold text-2xl">JEE SureSeat Counselling</h3><p class="text-textSecondary text-xs">All India Government Colleges</p></div></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8"><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-accent text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>College & Branch Prediction</div><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-accent text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>JoSAA & CSAB Form Filling</div><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-accent text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>Smart Choice Filling Strategy</div><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-accent text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>Seat Optimization Every Round</div><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-accent text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>State Counselling Guidance</div><div class="text-xs text-textSecondary flex items-start gap-2"><span class="iconify text-accent text-sm mt-0.5 flex-shrink-0" data-icon="lucide:check"></span>1:1 Student + Parent Session</div></div><div class="flex flex-wrap gap-4"><div class="inline-flex items-center gap-2 bg-accent/10 text-accent rounded-full px-4 py-2 text-xs font-medium"><span class="iconify" data-icon="lucide:clock"></span>Early Bird Discount</div><div class="inline-flex items-center gap-2 bg-yellow-500/10 text-yellow-500 rounded-full px-4 py-2 text-xs font-medium"><span class="iconify" data-icon="lucide:users"></span>First 50 Students Special</div></div></div><div class="bg-bgAlt border-t lg:border-t-0 lg:border-l border-border p-8 md:p-12 flex flex-col items-center justify-center gap-4"><a href="#contact" class="btn-primary bg-accent text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full flex items-center gap-2">Enquire Now <span class="iconify" data-icon="lucide:arrow-right"></span></a><p class="text-textWeak text-[10px] uppercase tracking-widest">Free Consultation</p></div></div></div>
+    </div>
+  </section>
+
+  <!-- OFFER -->
+  <section class="py-16 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5"></div>
+    <div class="max-w-[1550px] mx-auto px-6 relative z-10">
+      <div class="border border-accent/30 rounded-2xl p-8 md:p-12 text-center glow-sm">
+        <div class="inline-flex items-center gap-2 bg-accent/10 text-accent rounded-full px-4 py-1.5 mb-6"><span class="iconify text-sm" data-icon="lucide:flame"></span><span class="text-xs font-bold uppercase tracking-widest">Limited-Time Offer</span></div>
+        <h2 class="font-heading font-bold text-3xl md:text-4xl tracking-tight mb-6">Don't Miss Out — <span class="text-accent">Save Big Today</span></h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto mb-8">
+          <div class="bg-bg/50 border border-border rounded-xl p-4"><div class="font-heading font-bold text-2xl text-accent mb-1">FREE</div><div class="text-textSecondary text-xs">Consultation</div></div>
+          <div class="bg-bg/50 border border-border rounded-xl p-4"><div class="font-heading font-bold text-2xl text-accent mb-1">20% OFF</div><div class="text-textSecondary text-xs">First 10 Clients</div></div>
+          <div class="bg-bg/50 border border-border rounded-xl p-4"><div class="font-heading font-bold text-2xl text-accent mb-1">COMBO</div><div class="text-textSecondary text-xs">Discounts Available</div></div>
+        </div>
+        <a href="#contact" class="btn-primary bg-accent text-white text-sm font-bold uppercase tracking-widest px-10 py-4 rounded-full inline-flex items-center gap-2">Claim Your Offer <span class="iconify" data-icon="lucide:arrow-right"></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-24 md:py-32">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-16"><div class="inline-flex items-center gap-2 tag rounded-full px-4 py-1.5 mb-6"><span class="iconify text-sm" data-icon="lucide:help-circle"></span><span class="text-xs font-medium uppercase tracking-widest">FAQ</span></div><h2 class="font-heading font-bold text-3xl md:text-4xl tracking-tight">Frequently Asked Questions</h2></div>
+      <div class="space-y-3">
+        <div class="faq-item border border-border rounded-xl overflow-hidden"><button class="faq-toggle w-full flex items-center justify-between p-5 text-left" onclick="toggleFaq(this)"><span class="font-heading font-bold text-sm">Do I need any technical knowledge?</span><span class="iconify text-textWeak text-lg faq-icon transition-transform duration-300" data-icon="lucide:chevron-down"></span></button><div class="faq-answer px-5"><p class="text-textSecondary text-sm font-light leading-relaxed pb-5">Not at all! Everything is done-for-you.</p></div></div>
+        <div class="faq-item border border-border rounded-xl overflow-hidden"><button class="faq-toggle w-full flex items-center justify-between p-5 text-left" onclick="toggleFaq(this)"><span class="font-heading font-bold text-sm">What does "AI Automation" actually do?</span><span class="iconify text-textWeak text-lg faq-icon transition-transform duration-300" data-icon="lucide:chevron-down"></span></button><div class="faq-answer px-5"><p class="text-textSecondary text-sm font-light leading-relaxed pb-5">24/7 chatbots, smart lead capture, WhatsApp automation, instant notifications.</p></div></div>
+        <div class="faq-item border border-border rounded-xl overflow-hidden"><button class="faq-toggle w-full flex items-center justify-between p-5 text-left" onclick="toggleFaq(this)"><span class="font-heading font-bold text-sm">How long does it take?</span><span class="iconify text-textWeak text-lg faq-icon transition-transform duration-300" data-icon="lucide:chevron-down"></span></button><div class="faq-answer px-5"><p class="text-textSecondary text-sm font-light leading-relaxed pb-5">Typically 7–14 days depending on package and complexity.</p></div></div>
+        <div class="faq-item border border-border rounded-xl overflow-hidden"><button class="faq-toggle w-full flex items-center justify-between p-5 text-left" onclick="toggleFaq(this)"><span class="font-heading font-bold text-sm">Is pricing one-time or recurring?</span><span class="iconify text-textWeak text-lg faq-icon transition-transform duration-300" data-icon="lucide:chevron-down"></span></button><div class="faq-answer px-5"><p class="text-textSecondary text-sm font-light leading-relaxed pb-5">One-time project fees. Hosting/domain is separate (~₹1,000–₹3,000/year).</p></div></div>
+        <div class="faq-item border border-border rounded-xl overflow-hidden"><button class="faq-toggle w-full flex items-center justify-between p-5 text-left" onclick="toggleFaq(this)"><span class="font-heading font-bold text-sm">What is JEE SureSeat Counselling?</span><span class="iconify text-textWeak text-lg faq-icon transition-transform duration-300" data-icon="lucide:chevron-down"></span></button><div class="faq-answer px-5"><p class="text-textSecondary text-sm font-light leading-relaxed pb-5">Complete counselling support — prediction, form filling, strategy, seat optimization, 1:1 sessions.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-24 md:py-32 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.02] to-transparent"></div>
+    <div class="max-w-[1550px] mx-auto px-6 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        <div>
+          <div class="inline-flex items-center gap-2 tag rounded-full px-4 py-1.5 mb-6"><span class="iconify text-sm" data-icon="lucide:mail"></span><span class="text-xs font-medium uppercase tracking-widest">Contact Us</span></div>
+          <h2 class="font-heading font-bold text-3xl md:text-5xl tracking-tight mb-6">Let's Build Something<br><span class="text-accent">Amazing Together</span></h2>
+          <p class="text-textSecondary text-base md:text-lg font-light leading-relaxed mb-10">Ready to transform your business? Get in touch for a free consultation.</p>
+          <div class="space-y-6 mb-10">
+            <a href="mailto:trackiconofficial@gmail.com" class="flex items-center gap-4 group"><div class="w-12 h-12 rounded-xl border border-border flex items-center justify-center group-hover:border-accent group-hover:bg-accent/10 transition-all"><span class="iconify text-textSecondary text-xl group-hover:text-accent transition-colors" data-icon="lucide:mail"></span></div><div><div class="text-textWeak text-[10px] uppercase tracking-widest mb-0.5">Email</div><div class="text-textPrimary text-sm font-medium group-hover:text-accent transition-colors">trackiconofficial@gmail.com</div></div></a>
+            <a href="https://wa.me/919795445292" target="_blank" class="flex items-center gap-4 group"><div class="w-12 h-12 rounded-xl border border-border flex items-center justify-center group-hover:border-accent group-hover:bg-accent/10 transition-all"><span class="iconify text-textSecondary text-xl group-hover:text-accent transition-colors" data-icon="lucide:phone"></span></div><div><div class="text-textWeak text-[10px] uppercase tracking-widest mb-0.5">Phone / WhatsApp</div><div class="text-textPrimary text-sm font-medium group-hover:text-accent transition-colors">+91 97954 45292</div></div></a>
+          </div>
+          <div><div class="text-textWeak text-[10px] uppercase tracking-widest mb-4">Follow Us</div><div class="flex items-center gap-3"><a href="https://x.com/TrackIconOne" target="_blank" class="w-10 h-10 rounded-full border border-border flex items-center justify-center text-textSecondary hover:border-accent hover:text-accent hover:bg-accent/10 transition-all"><span class="iconify text-lg" data-icon="lucide:twitter"></span></a><a href="https://www.instagram.com/trackiconofficial/" target="_blank" class="w-10 h-10 rounded-full border border-border flex items-center justify-center text-textSecondary hover:border-accent hover:text-accent hover:bg-accent/10 transition-all"><span class="iconify text-lg" data-icon="lucide:instagram"></span></a><a href="https://www.linkedin.com/company/112149144/admin/dashboard/" target="_blank" class="w-10 h-10 rounded-full border border-border flex items-center justify-center text-textSecondary hover:border-accent hover:text-accent hover:bg-accent/10 transition-all"><span class="iconify text-lg" data-icon="lucide:linkedin"></span></a><a href="https://www.facebook.com/people/TrackIcon/61587768465776/" target="_blank" class="w-10 h-10 rounded-full border border-border flex items-center justify-center text-textSecondary hover:border-accent hover:text-accent hover:bg-accent/10 transition-all"><span class="iconify text-lg" data-icon="lucide:facebook"></span></a></div></div>
+        </div>
+        <div class="border border-border rounded-2xl p-8 md:p-10 bg-bgAlt/50">
+          <h3 class="font-heading font-bold text-xl mb-6">Get Your Free Consultation</h3>
+          <form id="contactForm" class="space-y-5" onsubmit="handleSubmit(event)">
+            <div><label class="text-textWeak text-[10px] uppercase tracking-widest mb-2 block">Your Name *</label><input type="text" id="formName" required placeholder="Enter your name" class="form-input w-full bg-bg border border-border rounded-xl px-4 py-3 text-sm text-textPrimary placeholder:text-textWeak"></div>
+            <div><label class="text-textWeak text-[10px] uppercase tracking-widest mb-2 block">Phone Number *</label><input type="tel" id="formPhone" required placeholder="+91 XXXXX XXXXX" class="form-input w-full bg-bg border border-border rounded-xl px-4 py-3 text-sm text-textPrimary placeholder:text-textWeak"></div>
+            <div><label class="text-textWeak text-[10px] uppercase tracking-widest mb-2 block">Email</label><input type="email" id="formEmail" placeholder="your@email.com" class="form-input w-full bg-bg border border-border rounded-xl px-4 py-3 text-sm text-textPrimary placeholder:text-textWeak"></div>
+            <div><label class="text-textWeak text-[10px] uppercase tracking-widest mb-2 block">Interested In *</label><select id="formService" required class="form-input w-full bg-bg border border-border rounded-xl px-4 py-3 text-sm text-textSecondary appearance-none cursor-pointer"><option value="" disabled selected>Select a service</option><option value="Business Growth Website">Business Growth Website</option><option value="E-Commerce Launch">E-Commerce Launch</option><option value="Starter Android App">Starter Android App</option><option value="Growth Android App">Growth Android App</option><option value="JEE SureSeat Counselling">JEE SureSeat Counselling</option><option value="Combo / Custom">Combo / Custom Package</option></select></div>
+            <div><label class="text-textWeak text-[10px] uppercase tracking-widest mb-2 block">Message</label><textarea id="formMessage" rows="3" placeholder="Tell us about your project..." class="form-input w-full bg-bg border border-border rounded-xl px-4 py-3 text-sm text-textPrimary placeholder:text-textWeak resize-none"></textarea></div>
+            <button type="submit" id="submitBtn" class="btn-primary w-full bg-accent text-white text-sm font-bold uppercase tracking-widest px-6 py-4 rounded-full flex items-center justify-center gap-2"><span id="submitText">Send Message</span><span class="iconify" data-icon="lucide:send" id="submitIcon"></span><span id="submitSpinner" class="hidden w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHATSAPP BUTTON -->
+  <a href="https://wa.me/919795445292?text=Hi%20TrackIcon%2C%20I%27m%20interested%20in%20your%20services." target="_blank" class="fixed bottom-6 left-6 z-[90] w-14 h-14 rounded-full bg-green-500 flex items-center justify-center shadow-lg shadow-green-500/30 hover:scale-110 transition-transform group">
+    <span class="iconify text-white text-2xl" data-icon="lucide:message-circle"></span>
+    <span class="absolute left-full ml-3 bg-bgAlt border border-border rounded-lg px-3 py-1.5 text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">WhatsApp Us</span>
+  </a>
+
+  <!-- ========== CRAFT.AI CHATBOT WIDGET ========== -->
+  <div class="fixed bottom-6 right-6 z-[90] flex flex-col items-end gap-3">
+    <div id="chatWindow" class="chatbot-window bg-bgAlt border border-border rounded-2xl shadow-2xl shadow-black/60 flex flex-col overflow-hidden">
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-accent to-pink-600 px-5 py-4 flex items-center justify-between flex-shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center">
+            <span class="iconify text-white text-lg" data-icon="lucide:sparkles"></span>
+          </div>
+          <div>
+            <div class="text-white craft-badge text-sm tracking-wide">Craft.AI</div>
+            <div class="text-white/70 text-[10px] flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-green-400 inline-block"></span> Online · by TrackIcon
+            </div>
+          </div>
+        </div>
+        <button onclick="toggleChat()" class="text-white/80 hover:text-white transition-colors">
+          <span class="iconify text-xl" data-icon="lucide:x"></span>
+        </button>
+      </div>
+      <!-- Messages -->
+      <div id="chatMessages" class="chat-messages flex-1 overflow-y-auto px-4 py-4 space-y-3"></div>
+      <!-- Quick Replies -->
+      <div id="quickReplies" class="px-4 pb-3 flex flex-wrap gap-2 flex-shrink-0"></div>
+      <!-- Input -->
+      <div class="border-t border-border px-4 py-3 flex items-center gap-2 flex-shrink-0">
+        <input type="text" id="chatInput" placeholder="Ask Craft.AI anything..." class="flex-1 bg-bg border border-border rounded-xl px-4 py-2.5 text-sm text-textPrimary placeholder:text-textWeak focus:border-accent focus:outline-none transition-colors" onkeydown="if(event.key==='Enter')sendChat()">
+        <button onclick="sendChat()" class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center hover:bg-[#E60063] transition-colors flex-shrink-0">
+          <span class="iconify text-white text-lg" data-icon="lucide:send"></span>
+        </button>
+      </div>
+    </div>
+    <!-- Toggle Button -->
+    <button id="chatToggleBtn" onclick="toggleChat()" class="w-14 h-14 rounded-full bg-accent flex items-center justify-center shadow-lg shadow-accent/30 hover:scale-110 transition-transform chat-pulse">
+      <span class="iconify text-white text-2xl" data-icon="lucide:sparkles" id="chatBtnIcon"></span>
+    </button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-border py-12">
+    <div class="max-w-[1550px] mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div>
+          <div class="flex items-center gap-2 mb-4"><img src="https://z-cdn-media.chatglm.cn/files/32d583c3-32e6-4079-8d55-71b756d07e83.jpeg?auth_key=1877641765-32a8a13aaa0342d0baaf747036cd2c7b-0-672ba68dc212461f3502ad83ff0506b3" alt="TrackIcon" class="logo-footer rounded-full"><span class="font-heading font-bold text-lg">TrackIcon</span></div>
+          <p class="text-textSecondary text-sm font-light leading-relaxed mb-4">We don't sell tools — we deliver results.</p>
+          <p class="text-textWeak text-xs italic">"We build lead-generating systems for your business."</p>
+        </div>
+        <div><div class="text-textWeak text-[10px] uppercase tracking-widest mb-4">Quick Links</div><div class="space-y-3"><a href="#home" class="block text-textSecondary text-sm hover:text-accent transition-colors">Home</a><a href="#about" class="block text-textSecondary text-sm hover:text-accent transition-colors">About Us</a><a href="#services" class="block text-textSecondary text-sm hover:text-accent transition-colors">Services</a><a href="#pricing" class="block text-textSecondary text-sm hover:text-accent transition-colors">Pricing</a><a href="#contact" class="block text-textSecondary text-sm hover:text-accent transition-colors">Contact</a></div></div>
+        <div><div class="text-textWeak text-[10px] uppercase tracking-widest mb-4">Get In Touch</div><div class="space-y-3"><a href="mailto:trackiconofficial@gmail.com" class="flex items-center gap-2 text-textSecondary text-sm hover:text-accent transition-colors"><span class="iconify text-base" data-icon="lucide:mail"></span>trackiconofficial@gmail.com</a><a href="https://wa.me/919795445292" target="_blank" class="flex items-center gap-2 text-textSecondary text-sm hover:text-accent transition-colors"><span class="iconify text-base" data-icon="lucide:phone"></span>+91 97954 45292</a></div><div class="flex items-center gap-3 mt-6"><a href="https://x.com/TrackIconOne" target="_blank" class="text-textWeak hover:text-accent transition-colors"><span class="iconify text-lg" data-icon="lucide:twitter"></span></a><a href="https://www.instagram.com/trackiconofficial/" target="_blank" class="text-textWeak hover:text-accent transition-colors"><span class="iconify text-lg" data-icon="lucide:instagram"></span></a><a href="https://www.linkedin.com/company/112149144/admin/dashboard/" target="_blank" class="text-textWeak hover:text-accent transition-colors"><span class="iconify text-lg" data-icon="lucide:linkedin"></span></a><a href="https://www.facebook.com/people/TrackIcon/61587768465776/" target="_blank" class="text-textWeak hover:text-accent transition-colors"><span class="iconify text-lg" data-icon="lucide:facebook"></span></a></div></div>
+      </div>
+      <div class="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4"><p class="text-textWeak text-xs">© 2025 TrackIcon. All rights reserved.</p><p class="text-textWeak text-xs">Done-for-you · AI-Powered · Results-Focused</p></div>
+    </div>
+  </footer>
+
+  <script>
+    const WEB_APP_URL = "PASTE_YOUR_WEB_APP_URL_HERE";
+
+    // Mobile Menu
+    const menuToggle = document.getElementById('menuToggle');
+    const menuClose = document.getElementById('menuClose');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuToggle.addEventListener('click', () => mobileMenu.classList.add('open'));
+    menuClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+    // FAQ
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+      const isOpen = answer.classList.contains('open');
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+      document.querySelectorAll('.faq-icon').forEach(i => i.style.transform = 'rotate(0deg)');
+      if (!isOpen) { answer.classList.add('open'); icon.style.transform = 'rotate(180deg)'; }
+    }
+
+    // Toast
+    function showToast(msg, isError = false) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      const toastIcon = document.getElementById('toastIcon');
+      toastMsg.textContent = msg;
+      toast.classList.remove('error');
+      toastIcon.setAttribute('data-icon', 'lucide:check-circle');
+      toastIcon.style.color = '#22c55e';
+      if (isError) { toast.classList.add('error'); toastIcon.setAttribute('data-icon', 'lucide:alert-circle'); toastIcon.style.color = '#ef4444'; }
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 5000);
+    }
+
+    // Contact Form
+    async function handleSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      const text = document.getElementById('submitText');
+      const icon = document.getElementById('submitIcon');
+      const spinner = document.getElementById('submitSpinner');
+      const name = document.getElementById('formName').value.trim();
+      const phone = document.getElementById('formPhone').value.trim();
+      const email = document.getElementById('formEmail').value.trim();
+      const service = document.getElementById('formService').value;
+      const message = document.getElementById('formMessage').value.trim();
+      if (!name || !phone || !service) { showToast('Please fill in all required fields.', true); return; }
+      text.textContent = 'Sending...'; icon.classList.add('hidden'); spinner.classList.remove('hidden'); btn.disabled = true; btn.style.opacity = '0.7';
+      try {
+        await fetch(WEB_APP_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, phone, email, service, message }) });
+        text.textContent = 'Sent!'; spinner.classList.add('hidden');
+        showToast('✅ Message sent! Check email & WhatsApp.');
+        e.target.reset();
+        setTimeout(() => { text.textContent = 'Send Message'; icon.classList.remove('hidden'); btn.disabled = false; btn.style.opacity = '1'; }, 3000);
+      } catch (error) {
+        text.textContent = 'Send Message'; icon.classList.remove('hidden'); spinner.classList.add('hidden'); btn.disabled = false; btn.style.opacity = '1';
+        showToast('❌ Failed to send. Please WhatsApp us directly.', true);
+      }
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
+        const t = document.querySelector(this.getAttribute('href'));
+        if (t) { e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 100, behavior: 'smooth' }); }
+      });
+    });
+    window.addEventListener('scroll', () => { document.getElementById('navBar').style.borderColor = window.scrollY > 100 ? 'rgba(255,0,110,0.2)' : '#23252B'; });
+
+    // ===== CRAFT.AI CHATBOT =====
+    let chatOpen = false;
+    let chatInitialized = false;
+
+    const chatResponses = {
+      'website': "🟢 **Business Growth Website** — ₹9,999 to ₹14,999\n\n✅ Custom 5-7 page website\n✅ AI Chatbot (24/7)\n✅ WhatsApp Integration\n✅ Smart Lead Capture\n✅ Basic SEO\n\nWant to get started? Fill our contact form or WhatsApp us!",
+      'ecommerce': "🟣 **E-Commerce Launch** — ₹14,999 to ₹21,999\n\n✅ Complete online store\n✅ 20-50 product listings\n✅ Payment gateway (UPI/Cards)\n✅ AI Assistant + WhatsApp AI\n✅ Order management\n\nInterested? Let's talk!",
+      'app': "📱 **Android App** — Two packages:\n\n🟢 Starter: ₹19,999 – ₹39,999\n🟡 Growth: ₹49,000 – ₹89,000\n\nBoth include AI chat, lead capture, push notifications. Growth adds login, payments, admin panel, and advanced AI.\n\nWhich one interests you?",
+      'jee': "🎓 **JEE SureSeat Counselling**\n\n✅ College & branch prediction\n✅ JoSAA & CSAB form filling\n✅ Smart choice-filling strategy\n✅ Seat optimization every round\n✅ 1:1 Student + Parent session\n\n🔥 Early bird discount for first 50 students!",
+      'pricing': "💰 Here's our pricing overview:\n\n🔵 Website: ₹9,999 – ₹14,999\n🟣 E-Commerce: ₹14,999 – ₹21,999\n🟢 Starter App: ₹19,999 – ₹39,999\n🟡 Growth App: ₹49,000 – ₹89,000\n🎓 JEE Counselling: Special pricing\n\n⚠️ Limited offer: 20% OFF for first 10 clients!",
+      'ai': "🤖 Our AI automation includes:\n\n• 24/7 AI Sales Chatbot (Craft.AI)\n• Smart Lead Capture (auto-saves to Google Sheet)\n• AI WhatsApp Automation\n• Instant Notifications (Email + WhatsApp)\n• Automated Data Management\n• Behavior-Based Automation (Growth App)\n\nAll included in every package — no extra cost!",
+      'support': "💬 **Support Options:**\n\n📞 WhatsApp: +91 97954 45292\n📧 Email: trackiconofficial@gmail.com\n\nWe provide personal 1-on-1 support — no tickets, no waiting. Direct help from real humans!\n\nOr fill the contact form and we'll reach out within 1 hour.",
+      'offer': "🔥 **Current Offers:**\n\n✅ FREE Consultation\n✅ 20% OFF for first 10 clients\n✅ Combo discounts available\n\n⏰ These are limited-time offers. Contact us now to claim!",
+      'hello': "👋 Hi! I'm **Craft.AI** — TrackIcon's smart assistant.\n\nI can help you with:\n• 💼 Website Development\n• 🛒 E-Commerce Setup\n• 📱 Android App Development\n• 🎓 JEE Counselling\n• 💰 Pricing Details\n• 🤖 AI Features\n\nWhat are you looking for?",
+      'hi': "👋 Hi! I'm **Craft.AI** — TrackIcon's smart assistant.\n\nI can help you with:\n• 💼 Website Development\n• 🛒 E-Commerce Setup\n• 📱 Android App Development\n• 🎓 JEE Counselling\n• 💰 Pricing Details\n• 🤖 AI Features\n\nWhat are you looking for?",
+      'thanks': "You're welcome! 😊\n\nIf you need anything else, feel free to ask. You can also:\n\n📞 WhatsApp us directly\n📧 Fill the contact form\n\nI'm Craft.AI — always here to help!",
+      'thank you': "You're welcome! 😊\n\nIf you need anything else, feel free to ask. You can also:\n\n📞 WhatsApp us directly\n📧 Fill the contact form\n\nI'm Craft.AI — always here to help!",
+    };
+
+    function getBotResponse(msg) {
+      const lower = msg.toLowerCase().replace(/[^a-z0-9\s]/g, '');
+      if (lower.includes('website') || lower.includes('web') || lower.includes('site')) return chatResponses['website'];
+      if (lower.includes('ecommerce') || lower.includes('e-commerce') || lower.includes('ecom') || lower.includes('store') || lower.includes('shop') || lower.includes('online store')) return chatResponses['ecommerce'];
+      if (lower.includes('app') || lower.includes('android') || lower.includes('mobile')) return chatResponses['app'];
+      if (lower.includes('jee') || lower.includes('counselling') || lower.includes('counseling') || lower.includes('josaa') || lower.includes('csab')) return chatResponses['jee'];
+      if (lower.includes('price') || lower.includes('pricing') || lower.includes('cost') || lower.includes('rate') || lower.includes('how much') || lower.includes('fee')) return chatResponses['pricing'];
+      if (lower.includes('ai') || lower.includes('automation') || lower.includes('chatbot') || lower.includes('bot') || lower.includes('craft')) return chatResponses['ai'];
+      if (lower.includes('support') || lower.includes('help') || lower.includes('contact') || lower.includes('reach')) return chatResponses['support'];
+      if (lower.includes('offer') || lower.includes('discount') || lower.includes('deal') || lower.includes('coupon')) return chatResponses['offer'];
+      if (lower.includes('hello') || lower.includes('hi ') || lower === 'hi' || lower.includes('hey')) return chatResponses['hello'];
+      if (lower.includes('thanks') || lower.includes('thank you') || lower.includes('thankyou')) return chatResponses['thanks'];
+      return "Thanks for your message! 😊\n\nI'm **Craft.AI** — I can help you with:\n• 💼 Website Development\n• 🛒 E-Commerce Setup\n• 📱 Android Apps\n• 🎓 JEE Counselling\n• 💰 Pricing\n• 🤖 AI Features\n\nOr type **\"offer\"** for current discounts!\n\nFor detailed queries, please WhatsApp us at +91 97954 45292.";
+    }
+
+    function formatBotText(text) {
+      return text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-textPrimary">$1</strong>').replace(/\n/g, '<br>');
+    }
+
+    function addMessage(text, isBot = false) {
+      const container = document.getElementById('chatMessages');
+      const wrapper = document.createElement('div');
+      wrapper.className = `flex ${isBot ? 'justify-start' : 'justify-end'} msg-anim`;
+      const bubble = document.createElement('div');
+      bubble.className = isBot
+        ? 'max-w-[85%] bg-bg border border-border rounded-2xl rounded-bl-md px-4 py-3 text-sm text-textSecondary leading-relaxed'
+        : 'max-w-[85%] bg-accent rounded-2xl rounded-br-md px-4 py-3 text-sm text-white leading-relaxed';
+      bubble.innerHTML = isBot ? formatBotText(text) : text;
+      wrapper.appendChild(bubble);
+      container.appendChild(wrapper);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function addTyping() {
+      const container = document.getElementById('chatMessages');
+      const wrapper = document.createElement('div');
+      wrapper.className = 'flex justify-start msg-anim';
+      wrapper.id = 'typingIndicator';
+      wrapper.innerHTML = `<div class="bg-bg border border-border rounded-2xl rounded-bl-md px-4 py-3 flex items-center gap-1.5"><span class="typing-dot w-2 h-2 rounded-full bg-textWeak"></span><span class="typing-dot w-2 h-2 rounded-full bg-textWeak"></span><span class="typing-dot w-2 h-2 rounded-full bg-textWeak"></span></div>`;
+      container.appendChild(wrapper);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function removeTyping() { const el = document.getElementById('typingIndicator'); if (el) el.remove(); }
+
+    function setQuickReplies(replies) {
+      const container = document.getElementById('quickReplies');
+      container.innerHTML = '';
+      replies.forEach(text => {
+        const btn = document.createElement('button');
+        btn.className = 'text-[11px] border border-border rounded-full px-3 py-1.5 text-textSecondary hover:border-accent hover:text-accent transition-colors whitespace-nowrap';
+        btn.textContent = text;
+        btn.onclick = () => sendQuickReply(text);
+        container.appendChild(btn);
+      });
+    }
+
+    function sendQuickReply(text) {
+      addMessage(text, false);
+      document.getElementById('quickReplies').innerHTML = '';
+      addTyping();
+      setTimeout(() => { removeTyping(); addMessage(getBotResponse(text), true); suggestFollowUp(text); }, 600 + Math.random() * 800);
+    }
+
+    function suggestFollowUp(topic) {
+      const map = {
+        'Website Development': ['💰 Pricing', '🛒 E-Commerce', '🤖 AI Features'],
+        'E-Commerce Setup': ['💰 Pricing', '📱 Android App', '🔥 Current Offers'],
+        'Android App': ['💰 Pricing', '🤖 AI Features', '🔥 Current Offers'],
+        'JEE Counselling': ['🔥 Current Offers', '📞 Contact Us'],
+        'Pricing': ['🔥 Current Offers', '📞 Contact Us'],
+        'AI Features': ['💼 Website', '💰 Pricing'],
+        'Current Offers': ['📞 Contact Us', '💼 Website'],
+        'Support / Contact': ['💼 Website', '💰 Pricing'],
+      };
+      setQuickReplies(map[topic] || ['💼 Website', '🛒 E-Commerce', '📱 Android App', '🎓 JEE Counselling', '💰 Pricing', '🔥 Offers']);
+    }
+
+    function sendChat() {
+      const input = document.getElementById('chatInput');
+      const msg = input.value.trim();
+      if (!msg) return;
+      input.value = '';
+      addMessage(msg, false);
+      document.getElementById('quickReplies').innerHTML = '';
+      addTyping();
+      setTimeout(() => {
+        removeTyping();
+        addMessage(getBotResponse(msg), true);
+        const lower = msg.toLowerCase();
+        let topic = null;
+        if (lower.includes('website') || lower.includes('web') || lower.includes('site')) topic = 'Website Development';
+        else if (lower.includes('ecom') || lower.includes('store') || lower.includes('shop')) topic = 'E-Commerce Setup';
+        else if (lower.includes('app') || lower.includes('android')) topic = 'Android App';
+        else if (lower.includes('jee') || lower.includes('counselling')) topic = 'JEE Counselling';
+        else if (lower.includes('price') || lower.includes('cost')) topic = 'Pricing';
+        else if (lower.includes('ai') || lower.includes('bot') || lower.includes('automation') || lower.includes('craft')) topic = 'AI Features';
+        else if (lower.includes('offer') || lower.includes('discount')) topic = 'Current Offers';
+        else if (lower.includes('support') || lower.includes('contact')) topic = 'Support / Contact';
+        suggestFollowUp(topic);
+      }, 600 + Math.random() * 800);
+    }
+
+    function toggleChat() {
+      const win = document.getElementById('chatWindow');
+      const btn = document.getElementById('chatToggleBtn');
+      const btnIcon = document.getElementById('chatBtnIcon');
+      chatOpen = !chatOpen;
+      if (chatOpen) {
+        win.classList.add('open');
+        btn.classList.add('stop');
+        btnIcon.setAttribute('data-icon', 'lucide:x');
+        if (!chatInitialized) {
+          chatInitialized = true;
+          setTimeout(() => {
+            addMessage("👋 Hi! I'm **Craft.AI** — TrackIcon's smart assistant.\n\nHow can I help you today?", true);
+            setQuickReplies(['💼 Website', '🛒 E-Commerce', '📱 Android App', '🎓 JEE Counselling', '💰 Pricing', '🔥 Offers']);
+          }, 400);
+        }
+      } else {
+        win.classList.remove('open');
+        btn.classList.remove('stop');
+        btnIcon.setAttribute('data-icon', 'lucide:sparkles');
+      }
+    }
+  </script>
+</body>
+</html>
